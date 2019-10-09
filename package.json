@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start":  "node ./hydra-server/server.js",
+    "start": "node ./hydra-server/server.js",
     "dev": "npm run start & npm run watch",
     "watch": "watchify ./hydra-server/app/index.js -o ./hydra-server/public/bundle.js",
     "build-main": "browserify ./hydra-server/app/index.js -o ./hydra-server/public/bundle.js",
@@ -28,6 +28,7 @@
     "nedb": "^1.8.0",
     "p5": "^0.6.1",
     "raf-loop": "^1.1.3",
+    "recordrtc": "^5.5.8",
     "rtc-patch-bay": "^1.0.0",
     "simple-peer": "^9.1.2",
     "socket.io": "^2.0.3",

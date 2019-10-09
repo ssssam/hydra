@@ -1,5 +1,4 @@
-
-
+const RecordRTC = require('recordrtc')
 
 class Menu {
   constructor (obj) {
@@ -10,12 +9,14 @@ class Menu {
     // variables related to popup window
     this.closeButton = document.getElementById("close-icon")
     this.clearButton =  document.getElementById("clear-icon")
+    this.recordButton = document.getElementById("record-icon")
     this.shareButton =  document.getElementById("share-icon")
     this.shuffleButton = document.getElementById("shuffle-icon")
     this.editorText = document.getElementsByClassName('CodeMirror-scroll')[0]
 
     this.shuffleButton.onclick = this.shuffleSketches.bind(this)
     this.shareButton.onclick = this.shareSketch.bind(this)
+    this.recordButton.onclick = this.startRecording.bind(this)
     this.clearButton.onclick = this.clearAll.bind(this)
     this.closeButton.onclick = () => {
       if(!this.isClosed) {
@@ -45,6 +46,25 @@ class Menu {
         }, () => this.hideConfirmation() )
       }
     })
+  }
+
+  startRecording() {
+    this.recordButton.classList.remove('fa-circle')
+    this.recordButton.classList.add('fa-square')
+    this.recordButton.title = "stop recording a video"
+    this.recordButton.onclick = this.stopRecording.bind(this)
+    window.recorder.startRecording();
+  }
+
+  stopRecording() {
+    this.recordButton.classList.remove('fa-square')
+    this.recordButton.classList.add('fa-circle')
+    this.recordButton.title = "start recording a video"
+    this.recordButton.onclick = this.startRecording.bind(this)
+    window.recorder.stopRecording(function() {
+        let blob = recorder.getBlob();
+        RecordRTC.invokeSaveAsDialog(blob);
+    });
   }
 
   showConfirmation(successCallback, terminateCallback) {

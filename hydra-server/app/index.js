@@ -1,7 +1,9 @@
-const PatchBay = require('./src/pb-live.js')
 const HydraSynth = require('hydra-synth')
-const Editor = require('./src/editor.js')
 const loop = require('raf-loop')
+const RecordRTC = require('recordrtc')
+
+const PatchBay = require('./src/pb-live.js')
+const Editor = require('./src/editor.js')
 const P5  = require('./src/p5-wrapper.js')
 const Gallery  = require('./src/gallery.js')
 const Menu = require('./src/menu.js')
@@ -49,16 +51,16 @@ function init () {
     render(o0)
   }
 
-
   pb.init(hydra.captureStream, {
     server: window.location.origin,
     room: 'iclc'
   })
 
+  window.recorder = RecordRTC(hydra.captureStream)
+
   var engine = loop(function(dt) {
     hydra.tick(dt)
   }).start()
-
 }
 
 window.onload = init
