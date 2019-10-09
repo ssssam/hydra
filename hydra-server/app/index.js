@@ -7,6 +7,7 @@ const Editor = require('./src/editor.js')
 const P5  = require('./src/p5-wrapper.js')
 const Gallery  = require('./src/gallery.js')
 const Menu = require('./src/menu.js')
+const MIDI = require('./src/midi.js')
 
 function init () {
   window.pb = pb
@@ -22,6 +23,8 @@ function init () {
   var hydra = new HydraSynth({ pb: pb, canvas: canvas, autoLoop: false })
   var editor = new Editor()
   var menu = new Menu({ editor: editor, hydra: hydra})
+
+  window.MIDI = new MIDI(pb)
 
   // get initial code to fill gallery
   var sketches = new Gallery(function(code, sketchFromURL) {

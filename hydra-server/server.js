@@ -22,6 +22,7 @@ if(process.env.TWILIO_SID) {
 }
 
 var io = require('socket.io')(server)
+midiServer = require('./midi-server.js')
 require('./twitter-gallery.js')(app)
 
 // crear un servidor en puerto 8000
@@ -118,6 +119,25 @@ io.on('connection', function (socket) {
     })
   })
   // TO DO: on disconnect, remove from label dictionary
+
+  // Server-side MIDI support.
+  socket.on('midi-list-inputs', function (data) {
+    console.log('midi-list-inputs message')
+    midiInputs = midiServer.listInputs();
+
+    console.log('replying to ' + socket.id + ': ' + JSON.stringify(midiInputs));
+    socket.emit('midi-inputs', midiInputs)
+  })
+
+  socket.on('midi-subscribe', function (data) {
+    console.log('midi-subscribe message ' + JSON.stringify(data))
+    midiServer.subscribe(socket, data['port'])
+  })
+
+  socket.on('midi-unsubscribe', function () {
+    console.log('midi-unsubscribe message')
+    midiServer.unsubscribe(socket);
+  })
 })
 
 app.use(express.static(path.join(__dirname, '/public')))
