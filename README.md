@@ -8,3 +8,4 @@ For information about Hydra, see [the upstream README file](https://github.com/o
 
   * README updated.
   * Generated files bundle.js and package-lock.json removed from source tree.
+  * Various other bugfixes (see [branch sam/bugfix](https://github.com/ssssam/hydra/tree/sam/bugfix))
