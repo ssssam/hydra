@@ -1,3 +1,4 @@
 .env
 db/saved_sketches
+public/bundle.js
 uploads
