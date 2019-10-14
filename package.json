@@ -12,7 +12,11 @@
     "docs": "./scripts/docs.js docs/funcs.md"
   },
   "author": "Olivia Jack",
-  "license": "AGPL",
+  "license": "AGPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ojack/hydra/"
+  },
   "dependencies": {
     "bitly": "^6.0.8",
     "browserify-middleware": "^8.1.1",
