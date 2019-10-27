@@ -16,8 +16,6 @@ docs:
         url: /funcs_modulators
       - title: "Operators"
         url: /funcs_operators
-      - title: "Modulators"
-        url: /funcs_modulators
       - title: "Sources"
         url: /funcs_sources
       - title: "Parameter sequences"
